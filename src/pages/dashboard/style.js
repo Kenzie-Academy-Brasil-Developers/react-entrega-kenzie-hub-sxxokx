@@ -9,6 +9,42 @@ export const StyledDashboard = styled.div`
     position: absolute;
     top: 0;
     
+    .flex-container{
+        display:flex;
+        justify-content:space-between;
+        align-items:center;
+    }
+    .flex-container button{
+        width: 33px;
+        height: 33px;
+        background-color:#212529;
+        font-size: 18px;
+        color: #F8F9FA;
+        border: none;
+        border-radius: 4px;
+    }
+    ul{
+        display:flex;
+        flex-direction:column;
+        align-items:center;
+        gap: 10px;
+        background-color: #212529;
+        padding:24px;
+        border-radius: 4px;
+        gap: 16px;
+
+    }
+   .techs-objt{
+        display:flex;
+        justify-content:space-between;
+        align-items:center;
+        text-decoration:none;
+        width:100%;
+        border: solid 1px ;
+        border-radius: 4px;
+        padding: 8px;
+        background-color:#121214;
+   }
 
     .div-headerDash{
         display:flex;
@@ -60,33 +96,44 @@ export const StyledDashboard = styled.div`
 
 
     @media(min-width: 600px){
-        display:flex;
-        justify-content: space-between;
-        position: absolute;
-        top: 90px;
-        width: 100%;
-
-        .div-headerDash{
-        display:flex;
-        justify-content:space-around;
-        gap: 300px;
-    }
+      
     .container-infos{
         display:flex;
+        flex-direction:row;
+        justify-content:space-around;
+        align-items:center;
         border-top: solid 1px  #868E96;
         border-bottom: solid 1px  #868E96;
-        width: 100%
     }
-
-    h3{
-        position:relative;
-        left: 300px;
+    .div-headerDash{
+        display:flex;
+        justify-content:space-around;
+        gap: 600px;
     }
-   p{
-    position:relative;
-        left: 300px;
+   
+   ul{
+        width:800px;
+        display:flex;
+        flex-direction:column;
+        align-items:center;
+        gap: 10px;
+        background-color: #212529;
+        padding:24px;
+        border-radius: 4px;
+        gap: 16px;
    }
-  
+   .container-ul-list{
+    display:flex;
+    flex-direction:column;
+    margin: 0 auto;
+    
+   }
+   .flex-container{
+        display:flex;
+        justify-content:space-evenly;
+        align-items:center;
+   }
+   
     }
     
 `

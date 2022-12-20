@@ -1,28 +1,17 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Link,  useNavigate } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { Input } from "../../components/Input";
 import { api } from "../../api/api";
 import { StyledSingUp } from "./style";
 import { toast, } from 'react-toastify';
+import { UserContext } from "../../UserContext/UserContext";
 
 
 export const SingUpPage = () => {
     const {register, handleSubmit, formState: {errors}} = useForm();
-    const navigate = useNavigate()
-
-     const userRegister =  async(data) => {
-        console.log(data)
-        try {
-          const response = await api.post('/users', data)
-          console.log(response.data)
-          toast.success('Conta criada com sucesso')
-          navigate('/')
-        } catch (error) {
-          console.error(error)
-          toast.error('Esse e-mail já existe')
-        }  
-      }
+  
+    const {userRegister} = useContext(UserContext);
 
     return(
         <StyledSingUp>
@@ -36,7 +25,7 @@ export const SingUpPage = () => {
             <form onSubmit={handleSubmit(userRegister)}>
                 <Input id="name" label="Nome" type="text" placeholder="Seu Nome" register={register("name")}/>
                 <Input id="email" label="E-mail" type="text" placeholder="Seu email" register={register("email")}/>                
-                <Input id="password" label="Senha" type="password" placeholder="Sua senha" register={register("password")}/>
+                <Input id="password" label="Senha" type="password" placeholder="Escolha sua senha/ mínimo 6 digitos" register={register("password")}/>
                 <Input id="bio" label="Bio" type="text" placeholder="Fale sobre você" register={register("bio")} />
                 <Input id="contact" label="Contato" type="text" placeholder="Opção de contato" register={register("contact")} />
                 <label htmlFor="course_module" ></label>

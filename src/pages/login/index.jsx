@@ -1,16 +1,19 @@
-import React, { useState } from "react";
+import React, { useContext, useState } from "react";
 import { Input } from "../../components/Input";
 import { Link } from "react-router-dom";
 import { useForm } from "react-hook-form";
 import { loginSchema } from "./loginSchema";
 import { yupResolver } from "@hookform/resolvers/yup"
 import { StyledLogin } from "./style";
+import { UserContext } from "../../UserContext/UserContext";
 
-export const LoginPage = ({ userLogin}) => {
-   const {register, handleSubmit, formState: {errors}} = useForm({resolver: yupResolver(loginSchema)});
+export const LoginPage = () => {
+    const {register, handleSubmit, formState: {errors}} = useForm({resolver: yupResolver(loginSchema)});
     const[loading, setLoading] = useState(false)
    
-   const submitLogin = (data) => {
+    const {userLogin} = useContext(UserContext);
+    
+    const submitLogin = (data) => {
         userLogin(data, setLoading)
    }
 
