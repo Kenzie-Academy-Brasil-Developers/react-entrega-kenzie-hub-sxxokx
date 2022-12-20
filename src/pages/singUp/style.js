@@ -5,6 +5,7 @@ export const StyledSingUp =  styled.div`
     flex-direction: column;
     justify-content: center;
     align-items: center;
+    height:100vh;
 
     .contain-header{
         display:flex;
@@ -14,22 +15,25 @@ export const StyledSingUp =  styled.div`
     }
     h2{
         color:#FF577F;
-
     }
-    
     section{
         display: flex;
         flex-direction: column;
         justify-content: center;
         align-items: center;
         gap: 8px;
+        border-radius: 4px;
 
         margin:10px;
         background-color:#212529;
         min-width:320px;
         max-width:420px;
-        height: 720px;
+        height: 700px;
+        overflow-y: scroll;
+        ::-webkit-scrollbar{
+        display: none;
     }
+}
     h3{
         color: #F8F9FA;
         font-size: 15px;
