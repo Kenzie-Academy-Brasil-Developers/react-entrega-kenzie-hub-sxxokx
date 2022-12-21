@@ -5,28 +5,31 @@ import { api } from "../api/api";
 
 export const UserContext = createContext({});
 
-export const UserProvider = ({children}) => {
-    
+export const UserProvider = ({children}) => {    
     const [open,setOpen] = useState(false)
     const [loading, setLoading] = useState(false);
-    
-
+    const [techOpen , setTechOpen] = useState(false)
+    const [techs, setTechs] = useState([]);
     const [user, setUser] =useState(null)
+
     const navigate = useNavigate()
-    const [renderTec, setRenderTec] = useState([]);
+
+
+  
 
     useEffect(() => {
       
       async function autoLogin() {
+
         const token = localStorage.getItem("@TOKEN");
         if(token){
           try {
             api.defaults.headers.authorization = `Bearer ${token}`
             const response = await api.get('/profile');
               setUser(response.data)
-              //console.log(response.data, user)
               setLoading(true);
               navigate('/dashboard')
+
           } catch (error) {
             console.log(error)
           } finally{
@@ -46,6 +49,7 @@ export const UserProvider = ({children}) => {
       setUser(response.data.user)
       toast.success('Login com Sucesso')
       navigate('/dashboard')
+
     } catch (error) {
       console.error(error)
       toast.error('E-mail ou Senha invalido')
@@ -55,14 +59,14 @@ export const UserProvider = ({children}) => {
   }
   
   const userRegister =  async(data) => {
-    console.log(data)
+
     try {
-      const response = await api.post('/users', data)
-      //console.log(response.data)
+      const response = await api.post('/users', data);
       toast.success('Conta criada com sucesso')
       navigate('/')
+
     } catch (error) {
-      //console.error(error)
+      console.error(error)
       toast.error('Esse e-mail já existe')
     }  
   }
@@ -71,49 +75,16 @@ export const UserProvider = ({children}) => {
    localStorage.removeItem('@TOKEN')
    setUser(null)
    navigate('/')
-
- }
-
- 
- const [todos, setTodos] = useState([]);
-
- function saveNewTodo(task) {
-     if (!task) return;
-
-     const newTodo = {
-         id: todos.length + 1,
-         task: task,
-         completed: false
-     };
-
-     setTodos(oldTodos => [...oldTodos, newTodo]);
- }
-
- function deleteTodo(id) {
-     const filteredTodos = todos.filter(todo => todo.id !== id);
-
-     setTodos(filteredTodos);
- }
-
- function completeTask(id) {
-     const filteredTodos = todos.map(todo => (
-         todo.id === id ? { ...todo, completed: !todo.completed } : todo
-     ));
-
-     setTodos(filteredTodos);
  }
 
  const createTech = async (data) => {
-  //console.log(data)
 
   try {
     const response = await api.post('/users/techs', data);
-    //console.log(response)
     toast.success('Tecnologia adicionada com sucesso')
     setOpen(false)
     setLoading(true);
-    // setTimeout(() => {
-    //   window.location.replace("/dashboard")}, 1500)
+
   } catch (error) {
       console.log(error.response.data.message);
       toast.error('Ops! algo deu errado')
@@ -121,13 +92,14 @@ export const UserProvider = ({children}) => {
   }
 
   const editTech = async(data) => {
+    //console.log(data)
     try {
       setLoading(true);
-      await api.put(`users/techs/${data.id}`, data);;
+      await api.put(`users/techs/${data.id}`, data);; 
       toast.info("Tecnologia atualizada com sucesso!");
 
     } catch (error) {
-      toast.error("Erro! Tente novamente!");
+      toast.error("Erro! Tente novamente! EDITe");
     } finally {
       setLoading(false);
     }
@@ -138,18 +110,16 @@ export const UserProvider = ({children}) => {
       setLoading(true);
       await api.delete(`users/techs/${id}`);
       toast.success("Tecnologia removida com sucesso!");
-
+      setTechOpen(false)
+      
     } catch (error) {
-      toast.error("Erro! Tente novamente!");
+      toast.error("Erro! Tente novamente DELETE!");
     } finally {
       setLoading(false);
     }
   }
-
- 
-
     return(
-        <UserContext.Provider value={{user, userLogin, userRegister, userLogOff, todos, saveNewTodo, deleteTodo, completeTask, loading, open, setOpen, createTech, deleteTech, editTech}}>
+        <UserContext.Provider value={{user, userLogin, userRegister, userLogOff, loading, open, setOpen, createTech, deleteTech, editTech, techOpen , setTechOpen, techs, setTechs}}>
             {children}
         </UserContext.Provider>
     )

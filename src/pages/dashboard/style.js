@@ -22,6 +22,7 @@ export const StyledDashboard = styled.div`
         color: #F8F9FA;
         border: none;
         border-radius: 4px;
+        cursor: pointer;
     }
     ul{
         display:flex;
@@ -95,7 +96,7 @@ export const StyledDashboard = styled.div`
     }
 
 
-    @media(min-width: 600px){
+    @media(min-width:800px){
       
     .container-infos{
         display:flex;
@@ -112,7 +113,8 @@ export const StyledDashboard = styled.div`
     }
    
    ul{
-        width:800px;
+        width:90%;
+        max-width:800px;
         display:flex;
         flex-direction:column;
         align-items:center;

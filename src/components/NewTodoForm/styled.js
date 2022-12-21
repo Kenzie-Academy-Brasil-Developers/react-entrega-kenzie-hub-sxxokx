@@ -14,7 +14,15 @@ export const StyledModal = styled.div`
     justify-content: center;
     flex-direction: column;
     
-
+    .container-modal-auth{
+        background-color: #212529;
+        color: #F8F9FA;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-around;
+        padding: 14.5474px 1px 15.6694px 19px;
+        gap: 12px;
+    }
     form{
         background-color: #212529;
         color: #F8F9FA;
@@ -66,6 +74,23 @@ export const StyledModal = styled.div`
         font-weight: 500;
         border: none;
         border-radius: 4px;
+    }
+    .button-del{
+        text-align: center;
+        width: 90%;
+        height: 39px;
+        background-color: #FF577F;
+        color: #F8F9FA;
+        padding-left: 12px;
+        font-size: 13px;
+        font-weight: 500;
+        border: none;
+        border-radius: 4px;
+    }
+    .contain-modalAuth{
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
     }
     .BG-form{
         background-color: #212529;

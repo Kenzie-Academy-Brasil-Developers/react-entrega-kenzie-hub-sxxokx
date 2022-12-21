@@ -16,18 +16,19 @@ export const StyledTechsUser = styled.li`
         font-size: 14px;
         font-weight: 700;
     }
+    .trashDel{
+        border: none;
+        border-radius: 4px;
+        background-color: #212529;
+        color: #F8F9FA;
+        width:32px;
+        height:32px;
+    }
     .trashButton{
         display: flex;
-        justify-content: center;
+        justify-content: space-between;
         align-items: center;
-        gap: 10px;
-    }
-    .trashButton button{
-        width: 16px;
-        height: 16px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
+        gap: 28px;
     }
     .container-infoTechs{
     height: 40px;
@@ -39,6 +40,7 @@ export const StyledTechsUser = styled.li`
     gap: 130px;
     border-radius: 8px;
     padding: 5px 15px 5px 15px;
+    cursor: pointer;
     }
     @media(min-width: 800px){
         width: 100vw;
